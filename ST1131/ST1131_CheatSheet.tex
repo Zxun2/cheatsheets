@@ -1,0 +1,579 @@
+\documentclass[10pt, landscape]{article}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{calc}
+\usepackage{multicol}
+\usepackage{ifthen}
+\usepackage[a4paper,margin=3mm,landscape]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+\usepackage{newtxtext} 
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{mathtools}
+\usepackage{listings}
+\setlist{nosep}
+
+% for including images
+\graphicspath{ {./images/} }
+
+
+\hypersetup{ 
+  pdfinfo={
+    Title={ST1131 Cheatsheet},
+    Author={Lee Zong Xun}
+    }
+}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
+% redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}%
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand\rmdefault{\sfdefault}
+%  makes nested numbering (e.g. 1.1.1, 1.1.2, etc)
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
+\renewcommand\labelitemii{•}
+\renewcommand\labelitemiii{•}
+%  convenient absolute value symbol
+\newcommand{\abs}[1]{\vert #1 \vert}
+%  convenient floor and ceiling
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+%  convenient modulo
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+%  for logical not operator, iff symbol, convenient "if/then"
+\renewcommand{\lnot}{\mathord{\sim}}
+\let\then\Rightarrow
+\let\Then\Rightarrow
+%  vectors
+\newcommand{\vv}[1]{\boldsymbol{#1}}
+\newcommand{\VV}[1]{\overrightarrow{#1}}
+%  column vector
+\newcommand{\cvv}[1]{\left(\begin{smallmatrix}#1\end{smallmatrix}\right)}
+\newcommand{\code}[1]{\textcolor{myblue}{\texttt{#1}}}
+\newcommand\bggreen{\cellcolor{green!10}}
+
+\makeatother
+\definecolor{myblue}{cmyk}{1,.72,0,.38}
+\everymath\expandafter{\the\everymath \color{myblue}}
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+%% this changes all items (enumerate and itemize)
+\setlength{\leftmargini}{0.5cm}
+\setlength{\leftmarginii}{0.4cm}
+\setlength{\leftmarginiii}{0.5cm}
+\setlist[enumerate,1]{leftmargin=2mm,labelindent=1mm,labelsep=1mm}
+\setlist[itemize,1]{leftmargin=2mm,labelindent=1mm,labelsep=1mm}
+\setlist[itemize,2]{leftmargin=3mm,labelindent=1mm,labelsep=1mm}
+\setlist[itemize,3]{leftmargin=3mm,labelindent=1mm,labelsep=1mm}
+
+%My Environments
+\newtheorem{example}[section]{Example}
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{4}
+
+% multicol parameters
+% These lengths are set only within the two main columns
+\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+    \fbox{%
+        \parbox{0.8\linewidth}{\centering \textcolor{black}{
+            {\Large\textbf{ST1131 Cheatsheet}}
+            \\ \normalsize{AY21/22 sem 2}}
+            \\ {\footnotesize \textcolor{myblue}{github.com/Zxun2}}
+        }%
+    }
+\end{center}
+
+\section{Confounding and Lurking variables}
+\textbf{Lurking} variables influences the association between variables of primary interest.
+
+\textbf{Confounding} happens when two explanatory variables are associated with the response variable and to one another. We are unable to tell which is causing the change in the response. $\implies$ Association does not imply causation.
+
+\section{Probability}
+\subsection{Additive Law of Probability}
+$P(A\cup B \cup C) = P(A) + P(B) + P(C) 
+- P(A\cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)$
+
+\subsection{Law of Total Probability}
+Suppose $B_{1,}B_{2,}\dots, B_n$ are a partition of S. Then for any event A $P(A) = \sum\limits_{i = 1}^{n} P(A\cap B_i)$
+
+\subsection{Bayes Theorem}
+Suppose $B_{1,}B_{2,}\dots, B_n$ are a partition of S. Then for any event A,
+
+$$P(B_{i}|A) = \frac{P(B_{i}\cap A)}{P(A)}
+= \frac{P(A| B_{i})P(B_i)}{\sum\limits_{i=1}^{n} P(A|B_i)P(B_{i})}$$
+
+\section{Epidemiological Terms}
+\textbf{Sensitivity} is the probability that the test is positive, given that the person has the disease, $Pr(pos\ | \ disease)$. \\
+\textbf{Specificity} is the probability that the test is negative, given that the person does not have the disease, $Pr(neg | \sim disease)$
+
+\section{Numerical Summaries}
+
+\begin{itemize}
+    \item Mean -- $\frac{1}{n}\sum\limits_{i = 1}^{n} X_i$, Variance -- $s^{2}= \frac{1}{n-1} \sum\limits_{i = 1}^{n} (X_{i}- \bar{X})^2$.
+    \begin{tabular}{|c|c|c|}
+     \hline 
+      & \multicolumn{1}{c|}{Discrete} & \multicolumn{1}{c|}{Continuous}\\
+      \hline
+     Mean & $\sum\limits_{x} xp_x$ & $ \int x f(x) dx$ \\ 
+     \hline
+     Variance & $\sum\limits_{x} (x - \mu)^2p_x $ & $\int (x - \mu)^{2}f(x) dx$ \\ 
+     \hline
+\end{tabular}
+    \item Median -- More representative when data is skewed
+    \item For n \textbf{identically distributed} random variables: 
+        $$X_1 + \dots + X_n \sim N(\frac{1}{n} \sum\limits_{i = 1}^{n} \mu_{i}= \mu, \frac{1}{n^{2}}\sum\limits_{i = 1}^{n} \sigma^{2}= \frac{\sigma^{2}}{n})$$ 
+    \item Correlation -- \code{cor(x, y)} 
+    $$r = \frac{1}{n - 1} \sum\limits_{i = 1}^{n} (\frac{X_{i} - \bar{X}}{s_{x}})(\frac{Y_{i}- \bar{Y}}{s_y})$$
+\end{itemize}
+
+\section{QQ plots and Normality checking}
+Note that the sample quantiles are in the X-axis and theoretical quantiles are in Y-axis.
+\begin{itemize}
+    \item Right tail above the straight line: shorter than Normal
+    \item Right tail below the straight line: longer than Normal
+    \item Left tail above the straight line: longer than Normal
+    \item Left tail below the straight line: shorter than Normal
+\end{itemize}
+
+\section{Binomial Distribution}
+$Bin(n, p)$ distribution is the discrete probability distribution of the number of successes in a sequence of n \textbf{independent}, each with its own \textbf{binary outcome}: success, p, or failure, 1 - p.\\
+
+Probability of X successes in n trials: 
+$$P(X = x) = {n \choose x} p^{x }(1-p)^{n - x}$$
+
+\begin{tightcenter}
+Expectation, E(X) = np $\quad$ Variance, Var(X) = np(1-p)
+\end{tightcenter}
+
+
+The random variable, X, takes on \textbf{n + 1} values
+
+Can be approximated by Normal Distribution when n is large and p is not close to 0 or 1.
+
+\section{Normal Distribution}
+Normal distribution is the continuous probability distribution for a real-valued random variable. Symmetric, Bell-Shaped and Characterized by $\mu$ and $\sigma^2$.
+
+\subsection{Standardization}
+if $X \sim N(\mu, \sigma^2)$ and we take $a = 1/\sigma$ and $b = −\mu/\sigma$, then $$Z = \frac{X - \mu}{\sigma} \sim N(0, 1)$$
+
+Z-scores refers to the number of standard deviations away from the mean.
+
+\section{Sampling Distribution}
+\textbf{Sampling distribution} is the probability distribution that specifies probabilities for the possible values that the statistic can take.
+\begin{itemize}
+    \item \textbf{Central Limit Theorem} : n > 30 $\implies \bar{X}$ is normal 
+    \begin{itemize}
+        \item The approximation gets better when n increases and if $X_i$ themselves are not too skewed
+    \end{itemize}
+    \item \textbf{Data distribution} refers to the data spread in 1 sample. Gets closer to population distribution as n increases. 
+    \item The sample variance is \textbf{smaller} than the population variance.
+\end{itemize}
+
+\subsection{Sample Proportion}
+Every $X_i$ is $ber(1, p)$ hence, by CLT when n is large enough, $$\hat{p} \sim N(p, \frac{p(1-p)}{n})$$. 
+
+n should satisfy: $np(1 - p) \geq 5$ for CLT to work.
+
+\subsection{Sample Mean}
+
+\subsubsection{Case 1: Population distribution is normal}
+Because the $X_i$'s are \textbf{themselves normal}, the resulting sampling distribution is also a random variable and is normally distributed. $$\bar{X}\sim N(\mu, \frac{\sigma^{2}}{n})$$
+
+\subsubsection{Case 2: Population distribution is not normal}
+Same as case 1. Have to ensure that sample size, $n$, is sufficiently large $\implies \bar{X}$ is still normally distributed. 
+
+\section{Confidence Interval}    
+A \textbf{confidence interval} contains the most believable values for a parameter. 
+\begin{itemize}
+    \item Formed by a method that combines the point estimate and margin of error.
+    \item The probability that this method produces an interval that contains the parameter is called the confidence level.
+\end{itemize}
+    $$\hat{p} \pm CI \times \sqrt{\frac{var}{n}}$$
+    
+\subsection{Properties of optimal point estimates}
+    \begin{itemize}
+        \item Should be unbiased. Has a sampling distribution that is centered at the parameter it tries to estimate.
+        \item Smallest standard     deviation compared to other point estimators.
+    \end{itemize}
+
+\subsection{Confidence Interval for Proportion}
+    \begin{itemize}
+        \item Choosing the value of n given a width, D
+            $$n \geq (\frac{2 \times q_{1 - \frac{\alpha}{2}}}{D})^2p(1-p)$$
+    \end{itemize}
+    
+\subsection{Confidence Interval for Mean}
+    \begin{itemize}
+        \item Follows t-distribution with n - 1 df, \code{qt(quantile, df)}
+        \item Necessary assumptions
+        \begin{itemize}
+            \item Normal and symmetric distribution (n  < 30)
+            \item Randomization (Not robust)
+        \end{itemize}
+        \item Choosing the value of n given a width, D
+            $$n \geq (\frac{2t_{n-1, 1 - \alpha/2}(s)}{D})^{2}\implies (\frac{2(q_{1 - \alpha/2})(s)}{D})^{2}$$
+    \end{itemize}
+
+\subsection{Interpretation}
+    \begin{itemize}
+        \item Long-run interpretation. $95\%$ of such intervals will contain the parameter.
+        \item No guarantee that the interval contain the parameter.
+        \item  All values in the interval are plausible values for population parameter.
+        \item CI widens $\implies$ Pr(parameter lie close to estimate) $\downarrow$ (works both ways).
+    \end{itemize}
+    
+\subsection{Notable code}
+\begin{itemize}
+    \item Shapiro Wilk Test for Normality -- \code{shapiro.test(length)}
+\end{itemize}
+
+\section{Hypothesis Testing}
+A \textbf{hypothesis} about a population claims that a \textbf{parameter} takes a particular numerical value.
+
+A \textbf{Type I}, $\alpha$, error occurs if we reject H0 when it is in fact true.
+A \textbf{Type II}, $\beta$ error occurs if we do not reject H0 when it is in fact false.\\
+The \textbf{power} of a test is defined to be $1 - \beta$. It is the probability of correctly rejecting H0, when it is in fact false.
+
+\subsection{5 steps of Hypothesis Testing}
+    \subsubsection{Assumptions}
+        \begin{itemize}
+            \item Randomization
+            \item For categorical,
+            \begin{itemize}
+                \item The sample size n is sufficiently large s.t. the sampling distribution is approximately normal $\implies np(1-p) \geq 5$
+            \end{itemize}
+            \item For quantitative,
+            \begin{itemize}
+                \item Population distribution is unknown but sample distribution is slightly skewed. Ensure that $n \geq 30$.
+            \end{itemize}
+            \item Variable is quantitative/categorical 
+        \end{itemize}
+    
+    \subsubsection{State your hypotheses}
+        \begin{itemize}
+            \item Null hypothesis, $H_0$
+            \item Alternative hypothesis, $H_1$
+        \end{itemize}
+        
+    \subsubsection{Test Statistics}
+        \begin{itemize}
+            \item For proportion. Standard error is in terms of $p$. $$Z = \frac{\hat{p} - p}{\sqrt{\frac{p(1 - p)}{n}} } \sim N(0, 1)$$
+	        \item For mean. Standard error is in terms of $s$.
+	        $$T = \frac{\bar{X} - \mu_0}{s/\sqrt{n}} \sim t_{n-1}(0, 1)$$
+        \end{itemize}   
+    
+    \subsubsection{Interpreting p-value}
+        \begin{itemize}
+            \item Assume $H_0$ is true. Conditional Probability. 
+            \item A small p-value provides strong evidence against $H_0$
+        \end{itemize}
+        
+    \subsubsection{Conclusion}
+        \begin{itemize}
+            \item Interpret the conclusion of the significance test in the context of the study. Reject $H_0 \implies$ not in the 95\% CI
+            \item Comment on the validity of $H_0$ when a significance level is given.
+        \end{itemize}
+        
+\begin{lstlisting}
+# for proportion, P(Z <= X) 
+> qnorm(X)
+# for proportion, P(Z > X)
+> qnorm(X, lower.tail = F)
+# for mean, P(T < -X & T > X)
+> t.test(data, mu = H_0, 
+    alternative = "two.sided", 
+    conf.level = 0.95)
+# the interval is based on the sample "data"
+# alt = c("two.sided", "less", "greater")
+\end{lstlisting}
+
+\section{Two Sample Hypothesis Testing}
+\subsection{Types of samples}
+\begin{itemize}
+    \item Independent Samples (Equal/Unequal Variance)
+    \item Dependent Samples
+    \begin{itemize}
+        \item Each observation has a matched observation in the other sample.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Independent Samples}
+\subsubsection{Assumptions}
+\begin{itemize}
+    \item Quantitative Response Variable
+    \item Independent, randomized
+    \item Variance is the equal/unequal
+    \item Data is normal (crucial when n is small)
+\end{itemize}
+
+\subsubsection{Variance Test} 
+$H_0$: The two samples are from two population with the same variance -- ratio is 1 \code{var.test(x, y)}. 
+
+\subsubsection{Hypothesis}
+The null hypothesis for comparing two means has the following form: $$ H_0: \mu_1 - \mu_{2} = 0 $$
+The alternative hypothesis: $$H_{1:}\mu_{1}-\mu_{2}\ne 0$$
+
+\subsubsection{Test Statistic}
+The \textbf{pooled estimate} of the common variance:
+$$ S_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2} $$
+The test statistic is then:
+$$ T = \frac{(\bar{X} - \bar{Y}) - 0}{se},\ where \ se = S_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}} $$
+For unequal variance, test statistic is:
+$$ T = \frac{(\bar{X} - \bar{Y}) - 0}{se}, \ where \ se = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}} $$
+
+\subsubsection{Interpreting p-value and Conclusion}
+For equal variance:
+\begin{itemize}
+    \item Under $H_0$,  $T$ follows a T-distribution with $(n_1 + n_2) - 2$ degrees of freedom. \code{pt(t-score, df)}
+\end{itemize}
+
+For unequal variance:
+\begin{itemize}
+    \item Under $H_0$, $T$ follows a t-distribution with a complicated number of degrees of freedom (might not be an integer). 
+\end{itemize}
+
+\begin{lstlisting}
+# Two sample t-test, mu1 - mu2 != 0
+> t.test(count_good, count_bad, 
+    alternative = "two.sided", 
+    var.equal = T, 
+    conf.level = 0.95)
+# Welch Two sample t-test, mu1 - mu2 != 0
+> t.test(count_good, count_bad, 
+    alternative = "two.sided", 
+    var.equal = F, 
+    conf.level = 0.95)
+\end{lstlisting}
+
+\subsection{Dependent Samples}
+Every observation in a sample has a matched value in other sample (Before and After).
+
+Let µ be the mean of the differences of the matched subjects in the population. Then the hypothesis is
+
+$$H0 : \mu = 0$$
+
+The test is then performed similar as the case of one-sample data. It is possible to use a two sample but that varies on the circumstances.
+
+\begin{lstlisting}
+# Paired t-test 
+> t.test(Yes, No, 
+    alternative = "greater",
+    paired = T, conf.level = 0.99)
+# One sample t-test
+> t.test(diff, alternative = "greater", 
+    conf.level = 0.99)
+\end{lstlisting}
+
+\subsection{Wilcoxon Signed Rank Test} 
+Null Hypothesis: Population median = $m_0$
+
+Alternative hypothesis: Population median $\ne m_0$
+
+- \code{wilcox.test(data, median)} 
+
+\section{Linear Regression}
+Linear regression means that this relationship is a linear one, of the form:
+$$Y = B_0 + B_1X + \epsilon$$
+
+\begin{itemize}
+    \item$\epsilon$ is a random variable. It has a variance of $\sigma^2$ centered at zero. Variations in Y given X. 
+    $$Y \sim N(B_0 + B_1X, \sigma^2)$$
+\end{itemize}
+
+\subsection{Assumptions}
+\begin{itemize}
+    \item \textit{Randomization}: Data collection
+    \item \textit{Relationship between X and Y is linear}: check this using a scatter plot and correlation. Add higher order terms if needed.
+    \item Normality: Residuals, $\epsilon \sim N(0, \sigma^2)$
+    \item \textit{Equal Variance}: Residuals. No matter the value of X, variance is always $\sigma^2$. Transform the response: taking $\ln(Y)$ , $\sqrt{Y}$ or $\frac{1}{Y}$ to be the response of model.
+    \item The response variable should be quantitative and symmetric
+    \begin{itemize}
+        \item Transform the variable via log (right skewed) or exponential (left skewed).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Ordinary Least Square Estimation}
+Find the line that minimizes the sum of squared residuals.
+$$\sum\limits_{i = 1}^{n} [e_i^2 = (y_i - \hat{y_i})^2]$$
+$\sigma$ is the \textbf{Residual Standard Error}.
+
+\subsubsection{Standardized Residuals}
+$$\frac{Y - \hat{Y}}{standard\ error\ of\ (Y - \hat{Y})}$$.
+
+\subsection{Interpolation vs Extrapolation}
+\textbf{Interpolation} refers to estimating the mean response that had not been observed, but is within the range of observed values.
+\begin{itemize}
+    \item A benefit of running a regression analysis.
+\end{itemize}
+
+\textbf{Extrapolation} refers to estimating the mean response that is outside the range of observed values.
+\begin{itemize}
+    \item We do not know the form of the relationship outside our sampled values.
+\end{itemize}
+
+\subsection{Confidence Band}
+Each sample has different variance, and different mean. Plotting all these different samples together into a single plot creates a band in which most of these plot lines lie in. \\
+The uncertainty around $(\bar{x}, \bar{y})$ is the smallest, but uncertainty increases as you step away from the observations.\\ 
+Hence, the width of the confidence band is \textbf{not constant}.
+
+\subsection{Testing Hypothesis}
+There are two kinds of tests that can be conducted.
+\begin{itemize}
+    \item t test: testing significance of one regressor. 
+    $$H_0: X_1 = 0 \quad H_1: X_1 \neq 0$$
+    \item F test: testing significance of whole model. 
+    $$H_0: \forall_i\in\{1..n\},\ X_i = 0 \quad H_1: \exists_i\in\{1..n\}, \ X_i \neq 0$$
+\end{itemize}
+
+Note that in a simple model, t-test is equal to F-test -- $t = \sqrt{F}$
+
+\subsection{What plots to make?}
+\begin{itemize}
+    \item Plot the $r_i$’s on the y-axis against $Y_i/X_i$ on the x-axis.
+    \item Create a histogram of the $r_i$'s.
+    \item Create a QQ-plot of the $r_i$'s.
+\end{itemize}
+
+\subsection{What to look out for?}
+\begin{itemize}
+    \item Residual plots against Y/X should be scatter randomly about 0, within the interval (-3, 3).
+    \item No funnel shape (Constant variance violated).
+    \item Non-normality in QQ plot (Residuals are not normal)
+    \item A curved band when plotting Y against X.
+\end{itemize}
+
+\textbf{Standard answer:}
+The histogram and QQ plot indicate the normality of the SR. The plot of SR versus the fitted response shows the randomness of the SR within the range of -3 to 3 with no pattern nor trend.\\
+An \textbf{outlier} may be influential. 
+\begin{lstlisting}
+which(SR>3 |SR<(-3)) # index of outliers
+C = cooks.distance(M1)
+> which(C>1) # index of influential point
+\end{lstlisting}
+
+\subsection{Coefficient of Determination, $R^2$}
+The proportion of total variation of the response (about the sample mean $\bar{Y}$) that is explained by the model.\\
+In a simple model, $R^2 = cor(X, Y)^2$. \\
+In a non-simple model, look at the adjusted $R^2$.\\
+$$R^2_{adj}= 1 - \frac{(1 - R^{2})(n - 1)}{n  - k - 1}$$
+
+If there are repeated X values with different Y values, then $R^2$ can never be 1.
+
+\subsubsection{F-Test and $R^2$}
+F-test measures the significance of model while $R^2$ describes the variation in the response that is explained by model.
+
+To decide between the two, 
+\begin{itemize}
+    \item Look at residual plots
+    \item Compare the range of $\hat{Y}$ relative to Y
+\end{itemize}
+
+\subsection{Multiple Linear Regression}
+\subsubsection{Indicator Variables}
+An \textbf{indicator variable} takes on the value 1 if a category is observed, and 0 otherwise.
+
+For a categorical variable with k categories, create \textbf{k - 1 indicators} each indicating 1 category. The one group for which we do not create an indicator variable will become the \textbf{reference group} for the regression. 
+\subsubsection{Interaction with Categorical Variables}
+It is possible that one of the variable may become a linear form of another variable $\implies$ modify/drop the term
+
+\end{multicols}
+\hrulefill \\
+\begin{multicols}{4}
+
+\section{Useful R Code}
+\begin{lstlisting}
+# Association between cat and quant
+> boxplot(quantitative~categorical)
+
+# Linear model
+> factor(categorical) # Rmb to factor 
+> m1 = lm(res ~ epl1 + epl2 + epl1 * epl2, 
+    data = dataset)
+
+# Standardized residual
+> SR = rstandard(mn)
+> length(SR)
+
+# Plot SR against Y/X
+> plot(m1$fitted.values, SR, 
+    xlab = "Fitted values", 
+    main = "SR against Fv")
+> abline(0, 0)
+
+# Plot SR against categorical regressor
+> plot.default(var, SR)
+> abline(0, 0)
+
+# Draw a normal curve on top of the histogram
+> hist(SR, probability = TRUE, col = 2)
+> x <- seq(-3, 3, length.out = 731)
+> y <-dnorm(x, mean(SR), sd(SR))
+> lines(x, y, col = "darkblue")
+
+# QQ plot to test normality of residuals
+> qqnorm(SR, datax = T, 
+    ylab = "Standardized residuals", 
+    xlab = "Z scores", 
+    main = "QQ Plot")
+> qqline(SR, datax = T)
+
+# Checking linearity, plot(x, y)
+> plot(temp, cnt)
+> abline(lm(cnt ~ temp,data = day))
+
+# Generate a confint for parameters
+> confint(m1, level = 0.95)
+
+# Predict values with model
+> new2 = data.frame(X1 = c(20, 30),
+    X2 = c(1, 1)) # two points
+> predict(m1, newdata = new2, 
+    interval = "confidence", level = 0.95) 
+
+# Check for insignificant regressor
+> anova(m1)
+\end{lstlisting}
+
+\end{multicols}
+\end{document}
