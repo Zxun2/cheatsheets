@@ -7,6 +7,7 @@ A compilation of cheatsheets for NUS Computer Science curriculum.
 - AY21/22 Sem 2
   - ST1131 Introduction to Statistics and Statistical Computing
   - CS2040s Data Structures and Algorithms
+  - CS2030s Programming Methodology II
 - AY22/23 Sem 1
   - ST2137 Statistical Computing and Programming
   - CS2109s Introduction to Machine Learning and Artificial Intelligence
