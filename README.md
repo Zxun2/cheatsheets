@@ -5,18 +5,18 @@ A compilation of cheatsheets for NUS Computer Science curriculum.
 ## Contents
 
 - AY21/22 Sem 2
-  - ST1131 Introduction to Statistics and Statistical Computing
-  - CS2040s Data Structures and Algorithms
-  - CS2030s Programming Methodology II
+  - [ST1131 Introduction to Statistics and Statistical Computing](https://github.com/Zxun2/cheatsheets/tree/main/ST1131)
+  - [CS2040s Data Structures and Algorithms](https://github.com/Zxun2/cheatsheets/tree/main/CS2040s)
+  - [CS2030s Programming Methodology II](https://github.com/Zxun2/cheatsheets/tree/main/CS2030s)
 - AY22/23 Sem 1
-  - ST2137 Statistical Computing and Programming
-  - CS2109s Introduction to Machine Learning and Artificial Intelligence
-  - ST2334 Probability and Statistics
+  - [ST2137 Statistical Computing and Programming](https://github.com/Zxun2/cheatsheets/tree/main/ST2137)
+  - [CS2109s Introduction to Machine Learning and Artificial Intelligence](https://github.com/Zxun2/cheatsheets/tree/main/CS2109s)
+  - [ST2334 Probability and Statistics](https://github.com/Zxun2/cheatsheets/tree/main/ST2334)
 - AY22/23 Sem 2 
   - CS2102 Database Systems (Soon!)
   - CS3230 Design and Analysis of Algorithms (Soon!)
   - MA2104 Multivariable Calculus (Soon!) 
-  - CS2109s Introduction to Machine Learning and Artificial Intelligence (TA) 
+  - [CS2109s Introduction to Machine Learning and Artificial Intelligence (TA)](https://github.com/Zxun2/cheatsheets/tree/main/CS2109s/tutorial%20slides) 
 
 ## Credits/Resources
 
