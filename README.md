@@ -14,7 +14,7 @@ A compilation of cheatsheets for NUS Computer Science curriculum.
   - [ST2334 Probability and Statistics](https://github.com/Zxun2/cheatsheets/tree/main/ST2334)
 - AY22/23 Sem 2 
   - CS2102 Database Systems (Soon!)
-  - CS3230 Design and Analysis of Algorithms (Soon!)
+  - [CS3230 Design and Analysis of Algorithms](https://github.com/Zxun2/cheatsheets/tree/main/CS3230)
   - MA2104 Multivariable Calculus (Soon!) 
   - [CS2109s Introduction to Machine Learning and Artificial Intelligence (TA)](https://github.com/Zxun2/cheatsheets/tree/main/CS2109s/tutorial%20slides) 
 
