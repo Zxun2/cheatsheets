@@ -1,6 +1,6 @@
-# NUS/Waterloo Cheatsheets
+# NUS Cheatsheets
 
-A compilation of cheatsheets for NUS/Waterloo Computer Science curriculum.
+A compilation of cheatsheets for NUS Computer Science curriculum.
 
 ## Contents
 
