@@ -15,7 +15,7 @@ A compilation of cheatsheets for NUS Computer Science curriculum.
 - AY22/23 Sem 2 
   - [CS2102 Database Systems](https://github.com/Zxun2/cheatsheets/tree/main/CS2102)
   - [CS3230 Design and Analysis of Algorithms](https://github.com/Zxun2/cheatsheets/tree/main/CS3230)
-  - MA2104 Multivariable Calculus (Soon!) 
+  - [MA2104 Multivariable Calculus](https://github.com/Zxun2/cheatsheets/tree/main/MA2104)
   - [CS2109s Introduction to Machine Learning and Artificial Intelligence (TA)](https://github.com/Zxun2/cheatsheets/tree/main/CS2109s/tutorial%20slides) 
 
 ## Credits/Resources
