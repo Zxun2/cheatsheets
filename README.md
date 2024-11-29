@@ -19,10 +19,16 @@ A compilation of cheatsheets for NUS Computer Science curriculum.
   - [MA2104 Multivariable Calculus](https://github.com/Zxun2/cheatsheets/tree/main/MA2104)
   - [CS2109s Introduction to Machine Learning and Artificial Intelligence (TA)](https://github.com/Zxun2/cheatsheets/tree/main/CS2109s/tutorial%20slides)
 
-- AY23/24 Sem 1
+- AY23/24 Sem 1 (Waterloo Exchange :D)
   - [CS350 Operating Systems](https://github.com/Zxun2/cheatsheets/tree/main/CS350)
   - [STAT330 Mathematical Statistics](https://github.com/Zxun2/cheatsheets/tree/main/STAT330)
   - [STAT331 Linear Models](https://github.com/Zxun2/cheatsheets/tree/main/STAT331)
+
+- AY23/24 Sem 2
+  - [CS4248 Natural Language Processing](https://github.com/Zxun2/cheatsheets/tree/main/CS4248)
+
+- AY24/25 Sem 1
+  - [CS4225 Big Data for Data Science](https://github.com/Zxun2/cheatsheets/tree/main/CS4225)
 
 ## Credits/Resources
 
