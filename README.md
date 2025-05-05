@@ -30,6 +30,10 @@ A compilation of cheatsheets for NUS Computer Science curriculum.
 - AY24/25 Sem 1
   - [CS4225 Big Data for Data Science](https://github.com/Zxun2/cheatsheets/tree/main/CS4225)
 
+- AY24/25 Sem 2
+  - [ST4253 Applied Time Series Analysis](https://github.com/Zxun2/cheatsheets/tree/main/ST4253)
+  - [CS3211 Parallel and Concurrent Programming](https://github.com/Zxun2/cheatsheets/tree/main/CS3211)
+
 ## Credits/Resources
 
 - [@jovyntls](https://github.com/jovyntls/) for latex template.
